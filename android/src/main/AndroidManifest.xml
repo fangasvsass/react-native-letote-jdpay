@@ -1,0 +1,28 @@
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="jdpay">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jdpay">
+
+    <application>
+        <activity
+            android:name="com.jdpaysdk.author.AuthorActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 123456789是用户注册的appID -->
+                <data android:scheme="jdpauth123456789"></data>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jdpaysdk.author.browser.BrowserActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"></activity>
+    </application>
+</manifest>
+  
+</manifest>
+  
