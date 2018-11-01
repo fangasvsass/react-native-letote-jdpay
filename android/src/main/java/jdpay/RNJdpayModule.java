@@ -1,31 +1,66 @@
 
 package jdpay;
 
+import android.app.Activity;
+import android.content.Intent;
+
+import com.facebook.react.bridge.ActivityEventListener;
+import com.facebook.react.bridge.BaseActivityEventListener;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReadableMap;
+import com.jdpaysdk.author.Constants;
+import com.jdpaysdk.author.JDPayAuthor;
 
 public class RNJdpayModule extends ReactContextBaseJavaModule {
 
-  private final ReactApplicationContext reactContext;
+    private final ReactApplicationContext reactContext;
 
-  public RNJdpayModule(ReactApplicationContext reactContext) {
-    super(reactContext);
-    this.reactContext = reactContext;
-  }
+    Promise promise;
 
-  @Override
-  public String getName() {
-    return "RNJdpay";
-  }
-    @ReactMethod
-    public void author() {
-        JDPayAuthor jdPayAuthor = new JDPayAuthor();
-        String orderId = "xxxx";
-        String merchant = "111147561003";
-        String appId = "xxxx";
-        String signData = "xxxxx";
-        jdPayAuthor.author(reactContext.getCurrentActivity(), orderId, merchant, appId, signData);
+    String appId;
+
+    public RNJdpayModule(ReactApplicationContext reactContext,String appId) {
+        super(reactContext);
+        this.reactContext = reactContext;
+        this.appId=appId;
+        reactContext.addActivityEventListener(mActivityEventListener);
     }
+
+    @Override
+    public String getName() {
+        return "RNJdpay";
+    }
+
+    @ReactMethod
+    public void pay(ReadableMap readableMap, Promise promise) {
+        try {
+            this.promise = promise;
+            JDPayAuthor jdPayAuthor = new JDPayAuthor();
+            String orderId = readableMap.getString("orderId");
+            String merchant = readableMap.getString("merchant");
+            String signData = readableMap.getString("order_sign");
+            jdPayAuthor.author(reactContext.getCurrentActivity(), orderId, merchant, this.appId, signData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
+
+        @Override
+        public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
+            if (Constants.PAY_RESPONSE_CODE == resultCode) {
+                String result = intent.getStringExtra(JDPayAuthor.JDPAY_RESULT);
+                if (promise != null) {
+                    promise.resolve(result);
+                }
+            }
+
+        }
+    };
+
 }

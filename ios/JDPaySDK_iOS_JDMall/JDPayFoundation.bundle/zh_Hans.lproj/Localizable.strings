@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+
+  Created by dongkui on 13/07/2017.
+  Copyright © 2017 JD. All rights reserved.
+*/
+
+"JDPayURLRequestErrorUnknow" = "未知错误";
+"JDPayURLRequestErrorBadURL" = "URL错误";
+"JDPayURLRequestErrorCancelled" = "已取消";

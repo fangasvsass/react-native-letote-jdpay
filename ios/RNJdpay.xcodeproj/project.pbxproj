@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B3E7B58A1CC2AC0600A0062D /* RNJdpay.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNJdpay.m */; };
+		CEB888C82189A044003CC2D3 /* libJDPay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB888C72189A044003CC2D3 /* libJDPay.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,12 @@
 		134814201AA4EA6300B7C361 /* libRNJdpay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNJdpay.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5881CC2AC0600A0062D /* RNJdpay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNJdpay.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNJdpay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNJdpay.m; sourceTree = "<group>"; };
+		CEB888C22189A042003CC2D3 /* JDPAuthObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPAuthObject.h; sourceTree = "<group>"; };
+		CEB888C32189A043003CC2D3 /* JDPAuthResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JDPAuthResource.bundle; sourceTree = "<group>"; };
+		CEB888C42189A043003CC2D3 /* JDPAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPAuthSDK.h; sourceTree = "<group>"; };
+		CEB888C52189A044003CC2D3 /* JDPayNetwork.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JDPayNetwork.bundle; sourceTree = "<group>"; };
+		CEB888C62189A044003CC2D3 /* JDPayFoundation.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JDPayFoundation.bundle; sourceTree = "<group>"; };
+		CEB888C72189A044003CC2D3 /* libJDPay.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJDPay.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB888C82189A044003CC2D3 /* libJDPay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +58,12 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				CEB888C22189A042003CC2D3 /* JDPAuthObject.h */,
+				CEB888C32189A043003CC2D3 /* JDPAuthResource.bundle */,
+				CEB888C42189A043003CC2D3 /* JDPAuthSDK.h */,
+				CEB888C62189A044003CC2D3 /* JDPayFoundation.bundle */,
+				CEB888C52189A044003CC2D3 /* JDPayNetwork.bundle */,
+				CEB888C72189A044003CC2D3 /* libJDPay.a */,
 				B3E7B5881CC2AC0600A0062D /* RNJdpay.h */,
 				B3E7B5891CC2AC0600A0062D /* RNJdpay.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -204,12 +218,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNJdpay;
 				SKIP_INSTALL = YES;
@@ -225,7 +242,10 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNJdpay;
 				SKIP_INSTALL = YES;

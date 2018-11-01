@@ -1,9 +1,6 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="jdpay">
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jdpay">
-
     <application>
         <activity
             android:name="com.jdpaysdk.author.AuthorActivity"
@@ -14,7 +11,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- 123456789是用户注册的appID -->
-                <data android:scheme="jdpauth123456789"></data>
+                <data android:scheme="jdpauth51b2565bbfe3460ba5e2ae21a28ee17e"></data>
             </intent-filter>
         </activity>
         <activity
@@ -22,7 +19,6 @@
             android:exported="false"
             android:screenOrientation="portrait"></activity>
     </application>
-</manifest>
   
 </manifest>
   
