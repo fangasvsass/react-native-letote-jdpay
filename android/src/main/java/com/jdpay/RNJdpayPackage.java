@@ -1,5 +1,5 @@
 
-package jdpay;
+package com.jdpay;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,15 +13,9 @@ import com.facebook.react.bridge.JavaScriptModule;
 
 public class RNJdpayPackage implements ReactPackage {
 
-    public String appId;
-
-    public RNJdpayPackage(String appId) {
-        this.appId = appId;
-    }
-
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new RNJdpayModule(reactContext,appId));
+        return Arrays.<NativeModule>asList(new RNJdpayModule(reactContext));
     }
 
     // Deprecated from RN 0.47

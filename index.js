@@ -1,11 +1,15 @@
-import { NativeModules } from 'react-native'
+import { NativeModules, Platform } from 'react-native'
 
 const { RNJdpay } = NativeModules
 class JdPay {
-  pay = async authorization_details => {
+  pay = async (authorization_details, appId) => {
     try {
       let authorObject = JSON.parse(authorization_details)
-      let result = await RNJdpay.pay(authorObject.jdpay)
+      let result
+      if (Platform.OS === 'ios') result = await RNJdpay.pay(authorObject.jdpay)
+      else {
+        result = await RNJdpay.pay(authorObject.jdpay, appId)
+      }
       if (typeof result === 'string') {
         result = JSON.parse(result)
       }

@@ -1,5 +1,5 @@
 
-package jdpay;
+package com.jdpay;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,12 +21,10 @@ public class RNJdpayModule extends ReactContextBaseJavaModule {
 
     Promise promise;
 
-    String appId;
 
-    public RNJdpayModule(ReactApplicationContext reactContext,String appId) {
+    public RNJdpayModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        this.appId=appId;
         reactContext.addActivityEventListener(mActivityEventListener);
     }
 
@@ -36,14 +34,14 @@ public class RNJdpayModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void pay(ReadableMap readableMap, Promise promise) {
+    public void pay(ReadableMap readableMap,String appId, Promise promise) {
         try {
             this.promise = promise;
             JDPayAuthor jdPayAuthor = new JDPayAuthor();
             String orderId = readableMap.getString("orderId");
             String merchant = readableMap.getString("merchant");
             String signData = readableMap.getString("order_sign");
-            jdPayAuthor.author(reactContext.getCurrentActivity(), orderId, merchant, this.appId, signData);
+            jdPayAuthor.author(reactContext.getCurrentActivity(), orderId, merchant, appId, signData);
         } catch (Exception e) {
             e.printStackTrace();
         }
